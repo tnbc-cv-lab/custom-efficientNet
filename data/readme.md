@@ -16,14 +16,8 @@
 │   ├── c2
 │   └── c3
 ├── modeldata
-│   ├── test
-│   ├── train
-│   └── validation
-└── models
-    ├── model.h5
-    ├── model_choice1.h5
-    ├── model_choice2.h5
-    ├── model_choice3.h5
-    └── trained_models.zip
+    ├── test
+    ├── train
+    └── validation
 
 ```
