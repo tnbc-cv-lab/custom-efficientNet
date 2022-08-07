@@ -1,5 +1,5 @@
 # File structure:
-'''
+```
 .
 ├── choice_1
 │   ├── cellSpace
@@ -26,4 +26,4 @@
     ├── model_choice3.h5
     └── trained_models.zip
 
-'''
+```
