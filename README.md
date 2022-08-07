@@ -36,12 +36,12 @@ This dataset consists of three classes; c0, c2, and c3 from an unsupervised clus
 
 | Epochs | Finetune | Flatten Layer | Dense Layer | Accuracy | Validation Accuracy | Loss | Validation Loss | 
 | :----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
-| 20 | False | False | False |
-| 20 | True | False | False |
-| 20 | False | True | False |
-| 20 | True | True | False |
-| 20 | False | False | True |
-| 20 | True | False | True |
-| 20 | False | True | True |
-| 20 | True | True | True |
+| 20 | False | False | False | 0.5656 | 0.5913 | 1.0222 | 0.9131 |
+| 20 | True | False | False | 0.7964 | 0.8558 | 0.6559 | 0.5587 |
+| 20 | False | True | False | 0.6372 | 0.6154 | 0.9631 | 0.9335 |
+| 20 | True | True | False | 0.6581 | 0.7115 | 0.8747 | 0.7085 | 
+| 20 | False | False | True | 0.8281 | 0.8221 | 0.5174 | 0.4923 |
+| 20 | True | False | True | 0.8488 | 0.8365 | 0.4617 | 0.3965 |
+| 20 | False | True | True | 0.7977 | 0.8077 | 0.5309 | 0.4822 |
+| 20 | True | True | True | 0.8302 | 0.851 | 0.4649 | 0.4432 |
 
