@@ -45,3 +45,6 @@ This dataset consists of three classes; c0, c2, and c3 from an unsupervised clus
 | 20 | Deactivated | Activated | Activated | 0.7977 | 0.8077 | 0.5309 | 0.4822 |
 | 20 | Activated | Activated | Activated | 0.8302 | 0.851 | 0.4649 | 0.4432 |
 
+
+## Datasets
+The datasets can be found at this link and is closed access: https://drive.google.com/drive/folders/10yBF2f2416Y585CHH9juLQVNwik87JZE?usp=sharing
