@@ -47,4 +47,4 @@ This dataset consists of three classes; c0, c2, and c3 from an unsupervised clus
 
 
 ## Datasets
-The datasets can be found at this link and is closed access: https://drive.google.com/drive/folders/10yBF2f2416Y585CHH9juLQVNwik87JZE?usp=sharing
+The datasets are privately available.
