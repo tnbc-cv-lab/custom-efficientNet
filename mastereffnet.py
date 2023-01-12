@@ -10,8 +10,8 @@ from skimage.io import imread
 from datetime import datetime
 
 # Importing the network and related pipelines
-from efficientnet_keras_transfer_learning.efficientnet import EfficientNetB0 as Net
-from efficientnet_keras_transfer_learning.efficientnet import center_crop_and_resize, preprocess_input
+from efficientnet import EfficientNetB0 as Net
+from efficientnet import center_crop_and_resize, preprocess_input
 
 # Importing the required supporter files
 from supporters.supporters import bcolors, start, stop
@@ -33,7 +33,8 @@ def run_model(height=150, width = 150, epochs=20, NUM_TRAIN=1136, NUM_TEST=576, 
     now = datetime.now()
     outputs = os.path.join("./data/outputs",now.strftime("%B%d_%H%M"))
     os.makedirs(outputs, exist_ok=True)
-    start(filename = os.path.join(outputs, "log.out"))
+    # start(filename = os.path.join(outputs, "log.out"))
+
 
 
     # sets the input shape of the data based on the data mode
@@ -169,7 +170,7 @@ def run_model(height=150, width = 150, epochs=20, NUM_TRAIN=1136, NUM_TEST=576, 
     for dir in os.listdir("./data/images/modeldata"):
         shutil.rmtree(os.path.join("./data/images/modeldata",dir))
 
-    stop()
+    # stop()
     return (history.history, outputs)
 
 def main(data_mode=1, layertrainable=True, flatten=False, dense=False):
