@@ -144,6 +144,15 @@ def run_model(height=150, width = 150, epochs=20, NUM_TRAIN=1136, NUM_TEST=576, 
         use_multiprocessing=False,)
     print(history.history)
     plottersaver(history.history['acc'], history.history['val_acc'], history.history['loss'], history.history['val_loss'], range(len(history.history['acc'])), data_mode, outputs, frozen=True)
+    outputs = model.predict(validation_generator)
+    confusion_matrix = sklearn.metrics.confusion_matrix(validation_generator.classes, np.argmax(outputs, axis=1))
+    print(bcolors.OKGREEN + "Confusion matrix: " + bcolors.ENDC)
+    print(confusion_matrix)
+    print(bcolors.OKGREEN + "Classification report: " + bcolors.ENDC)
+    classification_report = sklearn.metrics.classification_report(validation_generator.classes, np.argmax(outputs, axis=1), target_names=validation_generator.class_indices)
+    print(classification_report)
+    print (bcolors.OKGREEN + "Accuracy: " + bcolors.ENDC)
+    print (sklearn.metrics.accuracy_score(validation_generator.classes, np.argmax(outputs, axis=1)))
 
     if layertrainable ==True:
         conv_base.trainable = True
@@ -182,7 +191,7 @@ def run_model(height=150, width = 150, epochs=20, NUM_TRAIN=1136, NUM_TEST=576, 
     print(classification_report)
     print (bcolors.OKGREEN + "Accuracy: " + bcolors.ENDC)
     print (sklearn.metrics.accuracy_score(validation_generator.classes, np.argmax(outputs, axis=1)))
-    
+
 
 
     # testnet(data_mode=1, height=150, width=150)
