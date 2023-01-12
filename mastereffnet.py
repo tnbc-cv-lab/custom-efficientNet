@@ -8,6 +8,15 @@ import tensorflow as tf
 import shutil
 from skimage.io import imread
 from datetime import datetime
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from tensorflow.keras.models import load_model
+from tensorflow.keras.applications.imagenet_utils import decode_predictions
+from skimage.io import imread
+import sklearn.metrics
+from supporters.supporters import bcolors
+import os
 
 # Importing the network and related pipelines
 import efficientnet.keras as efn 
@@ -134,7 +143,7 @@ def run_model(height=150, width = 150, epochs=20, NUM_TRAIN=1136, NUM_TEST=576, 
         verbose=1,
         use_multiprocessing=False,)
     print(history.history)
-    # plottersaver(history.history['acc'], history.history['val_acc'], history.history['loss'], history.history['val_loss'], range(len(history.history['acc'])), data_mode, outputs, frozen=True)
+    plottersaver(history.history['acc'], history.history['val_acc'], history.history['loss'], history.history['val_loss'], range(len(history.history['acc'])), data_mode, outputs, frozen=True)
 
     if layertrainable ==True:
         conv_base.trainable = True
@@ -160,9 +169,21 @@ def run_model(height=150, width = 150, epochs=20, NUM_TRAIN=1136, NUM_TEST=576, 
             validation_steps= NUM_TEST //batch_size,
             verbose=1,
             use_multiprocessing=False)
-        # plottersaver(history.history['acc'], history.history['val_acc'], history.history['loss'], history.history['val_loss'], range(len(history.history['acc'])), data_mode, outputs, frozen=False)
+        plottersaver(history.history['acc'], history.history['val_acc'], history.history['loss'], history.history['val_loss'], range(len(history.history['acc'])), data_mode, outputs, frozen=False)
         print(history.history)
     model.save(os.path.join("./data/models", "model_choice"+str(data_mode)+".h5"))
+    loaded = load_model(os.path.join("./data/models", "model_choice"+str(data_mode)+".h5"))
+    outputs = loaded.predict(validation_generator)
+    confusion_matrix = sklearn.metrics.confusion_matrix(validation_generator.classes, np.argmax(outputs, axis=1))
+    print(bcolors.OKGREEN + "Confusion matrix: " + bcolors.ENDC)
+    print(confusion_matrix)
+    print(bcolors.OKGREEN + "Classification report: " + bcolors.ENDC)
+    classification_report = sklearn.metrics.classification_report(validation_generator.classes, np.argmax(outputs, axis=1), target_names=validation_generator.class_indices)
+    print(classification_report)
+    print (bcolors.OKGREEN + "Accuracy: " + bcolors.ENDC)
+    print (sklearn.metrics.accuracy_score(validation_generator.classes, np.argmax(outputs, axis=1)))
+    
+
 
     # testnet(data_mode=1, height=150, width=150)
 
