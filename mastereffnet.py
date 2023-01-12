@@ -143,7 +143,7 @@ def run_model(height=150, width = 150, epochs=20, NUM_TRAIN=1136, NUM_TEST=576, 
         verbose=1,
         use_multiprocessing=False,)
     print(history.history)
-    plottersaver(history.history['acc'], history.history['val_acc'], history.history['loss'], history.history['val_loss'], range(len(history.history['acc'])), data_mode, outputs, frozen=True)
+    # plottersaver(history.history['acc'], history.history['val_acc'], history.history['loss'], history.history['val_loss'], range(len(history.history['acc'])), data_mode, outputs, frozen=True)
     outputs = model.predict(validation_generator)
     confusion_matrix = sklearn.metrics.confusion_matrix(validation_generator.classes, np.argmax(outputs, axis=1))
     print(bcolors.OKGREEN + "Confusion matrix: " + bcolors.ENDC)
@@ -178,7 +178,7 @@ def run_model(height=150, width = 150, epochs=20, NUM_TRAIN=1136, NUM_TEST=576, 
             validation_steps= NUM_TEST //batch_size,
             verbose=1,
             use_multiprocessing=False)
-        plottersaver(history.history['acc'], history.history['val_acc'], history.history['loss'], history.history['val_loss'], range(len(history.history['acc'])), data_mode, outputs, frozen=False)
+        # plottersaver(history.history['acc'], history.history['val_acc'], history.history['loss'], history.history['val_loss'], range(len(history.history['acc'])), data_mode, outputs, frozen=False)
         print(history.history)
     model.save(os.path.join("./data/models", "model_choice"+str(data_mode)+".h5"))
     loaded = load_model(os.path.join("./data/models", "model_choice"+str(data_mode)+".h5"))
