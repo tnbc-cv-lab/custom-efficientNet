@@ -10,8 +10,8 @@ from skimage.io import imread
 from datetime import datetime
 
 # Importing the network and related pipelines
-from efficientnet import EfficientNetB0 as Net
-from efficientnet import center_crop_and_resize, preprocess_input
+import efficientnet.keras as efn 
+
 
 # Importing the required supporter files
 from supporters.supporters import bcolors, start, stop
@@ -39,9 +39,8 @@ def run_model(height=150, width = 150, epochs=20, NUM_TRAIN=1136, NUM_TEST=576, 
     # sets the input shape of the data based on the data mode
     input_shape = (height, width, 3)
 
-
     # initialises the network with default imagenet weights
-    conv_base = Net(weights='imagenet', include_top=False, input_shape=input_shape)
+    conv_base = efn.EfficientNetB0(weights='imagenet', include_top=False, input_shape=input_shape)
 
     # Calls the relevant data choice function
     if data_mode == 1:
