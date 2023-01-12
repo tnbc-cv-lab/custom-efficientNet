@@ -160,7 +160,8 @@ def run_model(height=150, width = 150, epochs=20, NUM_TRAIN=1136, NUM_TEST=576, 
             validation_steps= NUM_TEST //batch_size,
             verbose=1,
             use_multiprocessing=False)
-        plottersaver(history.history['acc'], history.history['val_acc'], history.history['loss'], history.history['val_loss'], range(len(history.history['acc'])), data_mode, outputs, frozen=False)
+        # plottersaver(history.history['acc'], history.history['val_acc'], history.history['loss'], history.history['val_loss'], range(len(history.history['acc'])), data_mode, outputs, frozen=False)
+        print(history.history)
     model.save(os.path.join("./data/models", "model_choice"+str(data_mode)+".h5"))
 
     # testnet(data_mode=1, height=150, width=150)
